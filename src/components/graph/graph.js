@@ -1,6 +1,7 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { LineChart, ScatterPlot } from 'react-d3-components';
+import { Chart } from 'react-google-charts';
 
 import './graph.css';
 
@@ -18,7 +19,6 @@ class Graph extends Component {
 	constructor(props) {
 		super(props);
 		this.getChartData = this.getChartData.bind(this);
-		this.getScatterData = this.getScatterData.bind(this);
 		this.getCurrentFunction = this.getCurrentFunction.bind(this);
 	}
 
@@ -53,68 +53,63 @@ class Graph extends Component {
 		let fn = this.getCurrentFunction();
 
 		if(!points.length || !fn) {
-			return [{
-				values: [{ x: 0, y: 0 }]
-			}];
+			return [
+				['', '', ''],
+				[0, 0, 0]
+			];
 		}
 
 		const fnPoints = points.map(({ x, y }) => ({ x, y: fn(x) }));
 
-		let values = [];
+		let values = [
+			[['', '', '']]
+		];
+
 		fnPoints.forEach(({ x }, idx) => {
 			const next = fnPoints[idx + 1];
 			if(next) {
 				const delta = (next.x - x) / 50;
 				const range = [];
-				for(let i = x; i < next.x; i += delta) {
-					range.push(i);
-				}
-				console.log(delta, range);
-				const points = range.map(x => ({ x, y: fn(x) }));
-				values.push(points);
+				for(let i = x; i < next.x; i += delta) range.push(i);
+				const pointRange = range.map(h => {
+					const point = _.find(points, ({ x, y }) => x === h);
+					return point
+						? [ h, fn(h), point.y ]
+						: [ h, fn(h), null ];
+				});
+				values.push(pointRange);
+			} else {
+				const point = _.find(points, point => point.x === x);
+				values.push([[ x, fn(x), point.y ]]);
 			}
 		});
 
 		values = [].concat.apply([], values);
-		console.log('postconcat', values);
 
-		return [{ values }];
-	}
-
-	getScatterData() {
-		const { points } = this.props;
-
-		if(!points.length) {
-			return [{
-				values: [{ x: 0, y: 0 }]
-			}];
-		}
-
-		return [{
-			values: points
-		}];
+		return values;
 	}
 
 	render() {
+		const options = {
+			title: 'Scatter Chart with a line',
+			hAxis: { title: 'X' },
+			vAxis: { title: 'Y' },
+			legend: 'none',
+			series: {
+				1: { lineWidth: 0, pointSize: 8 }
+			}
+		};
+
+		console.log(this.getChartData());
+
 		return (
 			<div className="graph">
-
-				<LineChart
+				<Chart
+					chartType="ComboChart"
 					data={this.getChartData()}
-					width={400}
-					height={400}
-					margin={{top: 50, bottom: 50, left: 50, right: 50}}>
-				</LineChart>
-
-				<ScatterPlot
-					data={this.getScatterData()}
-					width={400}
-					height={400}
-					xAxis={{tickFormat: () => ''}}
-					yAxis={{tickFormat: () => ''}}
-					margin={{top: 50, bottom: 50, left: 50, right: 50}}>
-				</ScatterPlot>
-
+					options={options}
+					width="100%"
+					height="400px"/>
 			</div>
 		)
 	}
