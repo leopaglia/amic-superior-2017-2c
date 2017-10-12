@@ -91,7 +91,6 @@ class Graph extends Component {
 
 	render() {
 		const options = {
-			title: 'Scatter Chart with a line',
 			hAxis: { title: 'X' },
 			vAxis: { title: 'Y' },
 			legend: 'none',
@@ -99,8 +98,6 @@ class Graph extends Component {
 				1: { lineWidth: 0, pointSize: 8 }
 			}
 		};
-
-		console.log(this.getChartData());
 
 		return (
 			<div className="graph">

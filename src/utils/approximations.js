@@ -25,11 +25,12 @@ export const linearApproximation = points => {
 };
 
 export const quadraticValues = points => {
-	// TODO
 	const n = points.length;
-	const {xsum, ysum, xysum, x2sum} = valuesFor(points);
-	const [a, b] = solve([[x2sum, xsum], [xsum, n]], [xysum, ysum]);
-	return {a, b};
+	const {xsum, ysum, x2sum, x3sum, x4sum, xysum, x2ysum} = valuesFor(points);
+	console.log(xsum, ysum, x2sum, x3sum, x4sum, xysum, x2ysum);
+	const [c, b, a] = solve([[n, xsum, x2sum], [xsum, x2sum, x3sum], [x2sum, x3sum, x4sum]], [ysum, xysum, x2ysum]);
+	console.log(a, b, c);
+	return {a, b, c};
 };
 
 export const quadraticApproximation = points => {
@@ -70,7 +71,7 @@ export const potentialApproximation = points => {
 export const hyperbolicValues = points => {
 	const n = points.length;
 	const {invxsum, invysum, invxinvysum, invx2sum} = valuesFor(points);
-	const [A, B] = solve([[invx2sum, invxsum], [invxsum, n]], [invxinvysum, invysum]);
+	const [B, A] = solve([[invx2sum, invxsum], [invxsum, n]], [invxinvysum, invysum]);
 	const a = 1 / A;
 	const b = B * a;
 	return {a, b};

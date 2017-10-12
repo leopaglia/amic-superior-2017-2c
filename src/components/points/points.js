@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addPoint, removePoint } from "../../actions/index";
+import NumericInput from 'react-numeric-input';
 import './points.css';
 
 class Points extends Component {
@@ -14,18 +15,18 @@ class Points extends Component {
 		this.renderInputRow = this.renderInputRow.bind(this);
 	}
 
-	onXInputChange(e) {
-		this.setState({ x: parseInt(e.target.value, 10) });
+	onXInputChange(x) {
+		this.setState({ x });
 	}
 
-	onYInputChange(e) {
-		this.setState({ y: parseInt(e.target.value, 10) });
+	onYInputChange(y) {
+		this.setState({ y });
 	}
 
 	onFormSubmit(e) {
 		e.preventDefault();
 		this.props.addPoint({ x: this.state.x, y: this.state.y });
-		this.setState({ x: 0, y: 0});
+		this.setState({ x: 0, y: 0 });
 	}
 
 	onDeleteClick(point) {
@@ -60,10 +61,10 @@ class Points extends Component {
 		return (
 			<tr>
 				<td>
-					<input type="number" value={this.state.x} onChange={this.onXInputChange}/>
+					<NumericInput step={0.01} value={this.state.x} onChange={this.onXInputChange} autoFocus/>
 				</td>
 				<td>
-					<input type="number" value={this.state.y} onChange={this.onYInputChange}/>
+					<NumericInput step={0.01} value={this.state.y} onChange={this.onYInputChange}/>
 				</td>
 				<td>
 					<button className="btn btn-default" onClick={this.onFormSubmit}>Agregar Punto</button>

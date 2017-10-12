@@ -13,10 +13,13 @@ import {
 class Table extends Component {
 	constructor(props) {
 		super(props);
+		this.getData = this.getData.bind(this);
+		this.renderHeaders = this.renderHeaders.bind(this);
+		this.renderBody = this.renderBody.bind(this);
 		this.renderTable = this.renderTable.bind(this);
 	}
 
-	renderTable() {
+	getData() {
 		let data = {
 			headers: [],
 			data: [],
@@ -43,17 +46,45 @@ class Table extends Component {
 				break;
 		}
 
+		return data;
+	}
+
+	renderHeaders(data) {
+		return(
+			<thead>
+				<tr>
+					{data.headers.map((h, idx) => <th key={`datahead-${idx}`} className="text-center">{h}</th>)}
+				</tr>
+			</thead>
+		);
+	}
+
+	renderBody(data) {
+		return(
+			<tbody>
+				{data.data.map((row, idx) =>
+					<tr key={`datarow-${idx}`}>
+						{row.map((d, idx) => <td key={`data-${idx}`} className="text-center">{d}</td>)}
+					</tr>
+				)}
+				{this.renderSums(data)}
+			</tbody>
+		);
+	}
+
+	renderSums(data) {
+		return(
+			<tr>{data.sums.map((d, idx) => <td key={`datasum-${idx}`} className="text-center info">{d}</td>)}</tr>
+		);
+	}
+
+	renderTable() {
+		let data = this.getData();
+
 		return (
 			<table className="table table-striped">
-				<thead>
-					<tr>
-						{data.headers.map(h => <th className="text-center">{h}</th>)}
-					</tr>
-				</thead>
-				<tbody>
-					{data.data.map(row => <tr>{row.map(d => <td className="text-center">{d}</td>)}</tr>)}
-					<tr>{data.sums.map(d => <td className="text-center info">{d}</td>)}</tr>
-				</tbody>
+				{this.renderHeaders(data)}
+				{this.renderBody(data)}
 			</table>
 		);
 	}

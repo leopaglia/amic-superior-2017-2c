@@ -42,13 +42,16 @@ export const getLinearData = (points) => {
 export const getQuadraticData = (points) => {
 	const fn = quadraticApproximation(points);
 
-	const headers = ['X', 'Y', 'X * Y', 'X^2', 'F(X)', 'E'];
+	const headers = ['X', 'Y', 'X^2', 'X^3', 'X^4', 'X * Y', 'X^2 * Y', 'F(X)', 'E'];
 
 	const data = points.map(point => [
 		values.x(point),
 		values.y(point),
-		values.xy(point),
 		values.x2(point),
+		values.x3(point),
+		values.x4(point),
+		values.xy(point),
+		values.x2y(point),
 		fn(values.x(point)),
 		values.quadraticError(point, fn)
 	]);
@@ -56,8 +59,11 @@ export const getQuadraticData = (points) => {
 	const sums = [
 		values.xsum(points),
 		values.ysum(points),
-		values.xysum(points),
 		values.x2sum(points),
+		values.x3sum(points),
+		values.x4sum(points),
+		values.xysum(points),
+		values.x2ysum(points),
 		'-',
 		values.quadraticErrorSum(points, fn)
 	];

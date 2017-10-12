@@ -5,6 +5,7 @@ import Table from "../table/table";
 import Points from "../points/points";
 import Graph from "../graph/graph";
 import Buttons from "../buttons/buttons";
+import Function from "../function/function";
 
 class App extends Component {
 	render() {
@@ -23,6 +24,7 @@ class App extends Component {
 						</div>
 					</div>
 					<div className="row text-center">
+						<Function/>
 						<Table/>
 					</div>
 				</div>
