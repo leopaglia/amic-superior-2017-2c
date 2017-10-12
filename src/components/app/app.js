@@ -13,13 +13,13 @@ class App extends Component {
 			<div className="App">
 				<div className="container-flex">
 					<div className="row text-center">
-						<div className="col-md-6 text-center">
+						<div className="col-sm-6 text-center">
 							<Graph/>
 						</div>
-						<div className="col-md-4 text-center">
+						<div className="col-sm-4 text-center">
 							<Points/>
 						</div>
-						<div className="col-md-2 text-center">
+						<div className="col-sm-2 text-center">
 							<Buttons/>
 						</div>
 					</div>

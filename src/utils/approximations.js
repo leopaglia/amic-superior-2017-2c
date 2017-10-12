@@ -27,9 +27,7 @@ export const linearApproximation = points => {
 export const quadraticValues = points => {
 	const n = points.length;
 	const {xsum, ysum, x2sum, x3sum, x4sum, xysum, x2ysum} = valuesFor(points);
-	console.log(xsum, ysum, x2sum, x3sum, x4sum, xysum, x2ysum);
 	const [c, b, a] = solve([[n, xsum, x2sum], [xsum, x2sum, x3sum], [x2sum, x3sum, x4sum]], [ysum, xysum, x2ysum]);
-	console.log(a, b, c);
 	return {a, b, c};
 };
 
