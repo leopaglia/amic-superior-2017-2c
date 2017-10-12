@@ -40,7 +40,7 @@ export const exponentialValues = points => {
 	const n = points.length;
 	const {xsum, x2sum, lnysum, xlnysum} = valuesFor(points);
 	const [a, B] = solve([[x2sum, xsum], [xsum, n]], [xlnysum, lnysum]);
-	const b = pow(E, B);
+	const b = pow(E, B) || 0;
 	return {a, b};
 };
 
@@ -57,7 +57,8 @@ export const potentialValues = points => {
 	try {
 		[a, B] = solve([[ln2xsum, lnxsum], [lnxsum, n]], [lnxlnysum, lnysum]);
 	} catch(e) {}
-	const b = pow(E, B);
+	a = a || 0;
+	const b = pow(E, B) || 0;
 	return {a, b};
 };
 
@@ -70,8 +71,8 @@ export const hyperbolicValues = points => {
 	const n = points.length;
 	const {invxsum, invysum, invxinvysum, invx2sum} = valuesFor(points);
 	const [B, A] = solve([[invx2sum, invxsum], [invxsum, n]], [invxinvysum, invysum]);
-	const a = 1 / A;
-	const b = B * a;
+	const a = 1 / A || 0;
+	const b = B * a || 0;
 	return {a, b};
 };
 

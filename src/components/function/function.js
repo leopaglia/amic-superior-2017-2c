@@ -39,7 +39,8 @@ class Function extends Component {
 			}
 			case Approximations.EXPONENTIAL: {
 				const { a, b } = exponentialValues(points);
-				func = `${b} * e^{${a} * X}`;
+				func = `${b} * e^(${a} * X)`;
+				console.log(func);
 				func = nerdamer(func).toTeX();
 				func = `Y = ${func}`;
 				break;
