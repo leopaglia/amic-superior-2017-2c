@@ -26,14 +26,14 @@ class Function extends Component {
 			case Approximations.LINEAR: {
 				const { a, b } = linearValues(points);
 				func = `${a} * X + ${b}`;
-				func = nerdamer(func).toTeX();
+				func = nerdamer(func).toTeX('decimal');
 				func = `Y = ${func}`;
 				break;
 			}
 			case Approximations.QUADRATIC: {
 				const { a, b, c } = quadraticValues(points);
 				func = `${a} * X^2 + ${b} * X + ${c}`;
-				func = nerdamer(func).toTeX();
+				func = nerdamer(func).toTeX('decimal');
 				func = `Y = ${func}`;
 				break;
 			}
@@ -41,21 +41,21 @@ class Function extends Component {
 				const { a, b } = exponentialValues(points);
 				func = `${b} * e^(${a} * X)`;
 				console.log(func);
-				func = nerdamer(func).toTeX();
+				func = nerdamer(func).toTeX('decimal');
 				func = `Y = ${func}`;
 				break;
 			}
 			case Approximations.POTENTIAL: {
 				const { a, b } = potentialValues(points);
 				func = `${b} * X^${a}`;
-				func = nerdamer(func).toTeX();
+				func = nerdamer(func).toTeX('decimal');
 				func = `Y = ${func}`;
 				break;
 			}
 			case Approximations.HYPERBOLIC: {
 				const { a, b } = hyperbolicValues(points);
 				func = `${a} / X + ${b}`;
-				func = nerdamer(func).toTeX();
+				func = nerdamer(func).toTeX('decimal');
 				func = `Y = ${func}`;
 				break;
 			}
