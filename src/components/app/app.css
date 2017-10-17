@@ -1,3 +1,7 @@
 .App {
   text-align: center;
 }
+
+.App .half {
+  height: 50%;
+}

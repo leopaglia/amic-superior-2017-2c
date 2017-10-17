@@ -12,20 +12,22 @@ class App extends Component {
 		return (
 			<div className="App">
 				<div className="container-flex">
-					<div className="row text-center">
-						<div className="col-sm-6 text-center">
-							<Graph/>
-						</div>
-						<div className="col-sm-4 text-center">
-							<Points/>
-						</div>
-						<div className="col-sm-2 text-center">
+
+					<div className="row text-center half">
+						<div className="col-xs-12 col-sm-6 col-md-2 text-center">
 							<Buttons/>
 						</div>
+						<div className="col-xs-12 col-sm-6 col-md-4 text-center">
+							<Points/>
+						</div>
+						<div className="col-xs-12 col-sm-12 col-md-6 text-center">
+							<Table/>
+						</div>
 					</div>
-					<div className="row text-center">
+
+					<div className="row text-center half">
 						<Function/>
-						<Table/>
+						<Graph/>
 					</div>
 				</div>
 			</div>

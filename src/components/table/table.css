@@ -1,7 +1,7 @@
-.points > table {
-
+.Table table tr {
+    height: 48px;
 }
 
-.points > table > thead {
-
+.Table table td {
+    line-height: 24px !important;
 }

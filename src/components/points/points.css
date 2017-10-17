@@ -1,0 +1,7 @@
+.points table tr {
+    height: 48px;
+}
+
+.points table td {
+    line-height: 24px !important;
+}

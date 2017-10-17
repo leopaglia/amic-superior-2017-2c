@@ -51,7 +51,7 @@ class Points extends Component {
 				<td>{x}</td>
 				<td>{y}</td>
 				<td>
-					<button className="btn btn-danger" type="button" onClick={() => this.onDeleteClick({ x, y })}>&times;</button>
+					<button className="btn btn-sm btn-danger" type="button" onClick={() => this.onDeleteClick({ x, y })}>&times;</button>
 				</td>
 			</tr>
 		);
@@ -67,7 +67,7 @@ class Points extends Component {
 					<NumericInput step={0.01} value={this.state.y} onChange={this.onYInputChange}/>
 				</td>
 				<td>
-					<button className="btn btn-default" onClick={this.onFormSubmit}>Agregar Punto</button>
+					<button className="btn btn-sm btn-success" onClick={this.onFormSubmit}>+</button>
 				</td>
 			</tr>
 		);
@@ -86,7 +86,7 @@ class Points extends Component {
 		return (
 			<div className="points">
 				<form onSubmit={this.onFormSubmit}>
-					<table className="table table-striped table-condensed">
+					<table className="table table-striped">
 						{this.renderHeader()}
 						{this.renderBody()}
 					</table>
