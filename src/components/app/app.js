@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import './app.css';
 
-import Table from "../table/table";
-import Points from "../points/points";
-import Graph from "../graph/graph";
-import Buttons from "../buttons/buttons";
-import Function from "../function/function";
+import {
+	Buttons,
+	Function,
+	Graph,
+	Points,
+	Table
+} from '../../components';
 
 class App extends Component {
 	render() {
