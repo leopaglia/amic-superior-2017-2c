@@ -29,11 +29,12 @@ class Buttons extends Component {
 		return (
 			<div className="buttons">
 				<div className="well">
-					{this.renderButton(Approximations.LINEAR, 'Aproximación Lineal')}
-					{this.renderButton(Approximations.QUADRATIC, 'Aproximación Cuadrática')}
-					{this.renderButton(Approximations.EXPONENTIAL, 'Aproximación Exponencial')}
-					{this.renderButton(Approximations.POTENTIAL, 'Aproximación Potencial')}
-					{this.renderButton(Approximations.HYPERBOLIC, 'Aproximación Hiperbólica')}
+					<p><strong>Aproximaciones</strong></p>
+					{this.renderButton(Approximations.LINEAR, 'Lineal')}
+					{this.renderButton(Approximations.QUADRATIC, 'Cuadrática')}
+					{this.renderButton(Approximations.EXPONENTIAL, 'Exponencial')}
+					{this.renderButton(Approximations.POTENTIAL, 'Potencial')}
+					{this.renderButton(Approximations.HYPERBOLIC, 'Hiperbólica')}
 				</div>
 			</div>
 		)

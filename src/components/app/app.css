@@ -1,7 +1,9 @@
 .App {
+  height: 100%;
   text-align: center;
 }
 
 .App .half {
   height: 50%;
+  line-height: 25%;
 }
