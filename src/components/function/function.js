@@ -12,6 +12,7 @@ import {
 	potentialValues,
 	hyperbolicValues
 } from '../../utils/approximations';
+import './function.css';
 
 class Function extends Component {
 	constructor(props) {

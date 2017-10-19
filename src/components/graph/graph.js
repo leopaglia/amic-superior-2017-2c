@@ -106,7 +106,7 @@ class Graph extends Component {
 					data={this.getChartData()}
 					options={options}
 					width="100%"
-					height="400px"/>
+					height="350px"/>
 			</div>
 		)
 	}

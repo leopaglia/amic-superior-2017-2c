@@ -18,11 +18,10 @@ class App extends Component {
 						<Buttons/>
 					</div>
 					<div className="col-lg-9">
+						<Function/>
 						<Graph/>
 					</div>
 				</div>
-
-				<Function/>
 
 				<div className="row">
 					<div className="col-lg-4">

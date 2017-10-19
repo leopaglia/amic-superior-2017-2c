@@ -1,3 +1,7 @@
+.points {
+    margin-left: 25px;
+}
+
 .points table tr {
     height: 48px;
 }
