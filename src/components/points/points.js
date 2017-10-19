@@ -10,17 +10,15 @@ class Points extends Component {
 		this.state = { x: 0, y: 0 };
 		this.onFormSubmit = this.onFormSubmit.bind(this);
 		this.onDeleteClick = this.onDeleteClick.bind(this);
-		this.onXInputChange = this.onXInputChange.bind(this);
-		this.onYInputChange = this.onYInputChange.bind(this);
 		this.renderInputRow = this.renderInputRow.bind(this);
 	}
 
-	onXInputChange(x) {
-		this.setState({ x });
+	onXInputChange(e) {
+		this.setState({ x: parseFloat(e.target.value) });
 	}
 
-	onYInputChange(y) {
-		this.setState({ y });
+	onYInputChange(e) {
+		this.setState({ y: parseFloat(e.target.value) });
 	}
 
 	onFormSubmit(e) {
@@ -61,10 +59,10 @@ class Points extends Component {
 		return (
 			<tr>
 				<td>
-					<NumericInput step={0.01} value={this.state.x} onChange={this.onXInputChange} autoFocus/>
+					<input type="number" step={0.01} value={this.state.x} onChange={e => this.onXInputChange(e)} autoFocus/>
 				</td>
 				<td>
-					<NumericInput step={0.01} value={this.state.y} onChange={this.onYInputChange}/>
+					<input type="number" step={0.01} value={this.state.y} onChange={e => this.onYInputChange(e)}/>
 				</td>
 				<td>
 					<button className="btn btn-sm btn-success" onClick={this.onFormSubmit}>+</button>
@@ -86,7 +84,7 @@ class Points extends Component {
 		return (
 			<div className="points">
 				<form onSubmit={this.onFormSubmit}>
-					<table className="table table-striped">
+					<table className="table table-striped table-condensed">
 						{this.renderHeader()}
 						{this.renderBody()}
 					</table>

@@ -82,7 +82,7 @@ class Table extends Component {
 		let data = this.getData();
 
 		return (
-			<table className="table table-striped">
+			<table className="table table-striped table-condensed">
 				{this.renderHeaders(data)}
 				{this.renderBody(data)}
 			</table>
