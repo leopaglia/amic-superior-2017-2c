@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addPoint, removePoint } from "../../actions/index";
-import NumericInput from 'react-numeric-input';
 import './points.css';
 
 class Points extends Component {

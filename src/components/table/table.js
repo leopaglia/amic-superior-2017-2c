@@ -14,8 +14,6 @@ class Table extends Component {
 	constructor(props) {
 		super(props);
 		this.getData = this.getData.bind(this);
-		this.renderHeaders = this.renderHeaders.bind(this);
-		this.renderBody = this.renderBody.bind(this);
 		this.renderTable = this.renderTable.bind(this);
 	}
 

@@ -1,0 +1,11 @@
+.Comparison {
+    margin-right: 25px;
+}
+
+.Comparison table tr {
+    height: 48px;
+}
+
+.Comparison table td {
+    line-height: 24px !important;
+}

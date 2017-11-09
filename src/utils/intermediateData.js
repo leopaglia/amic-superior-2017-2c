@@ -176,3 +176,46 @@ export const getHyperbolicData = (points) => {
 		sums
 	};
 };
+
+export const getComparisonData = (points) => {
+	const fns = {
+		linear: linearApproximation(points),
+		quadratic: quadraticApproximation(points),
+		exponential: exponentialApproximation(points),
+		potential: potentialApproximation(points),
+		hyperbolic: hyperbolicApproximation(points)
+	};
+
+	const headers = ['X', 'Y', 'Lin', 'Cuad', 'Exp', 'Pot', 'Hip', 'Lin.err.', 'Cuad.err.', 'Exp.err.', 'Pot.err.', 'Hip.err.'];
+
+	const data = points.map(point => {
+		const x = values.x(point);
+		return [
+			values.x(point),
+			values.y(point),
+			fns.linear(x),
+			fns.quadratic(x),
+			fns.exponential(x),
+			fns.potential(x),
+			fns.hyperbolic(x),
+			values.quadraticError(point, fns.linear),
+			values.quadraticError(point, fns.quadratic),
+			values.quadraticError(point, fns.exponential),
+			values.quadraticError(point, fns.potential),
+			values.quadraticError(point, fns.hyperbolic)
+		]
+	});
+
+	const errorSums = [
+		values.quadraticErrorSum(points, fns.linear),
+		values.quadraticErrorSum(points, fns.quadratic),
+		values.quadraticErrorSum(points, fns.exponential),
+		values.quadraticErrorSum(points, fns.potential),
+		values.quadraticErrorSum(points, fns.hyperbolic)
+	];
+
+	const worstApproximationIndex = errorSums.indexOf(Math.max(...errorSums));
+	const bestApproximationIndex = errorSums.indexOf(Math.min(...errorSums));
+
+	return { headers, data, worstApproximationIndex, bestApproximationIndex };
+};

@@ -5,3 +5,8 @@ export const Approximations = {
 	POTENTIAL: 'POTENTIAL',
 	HYPERBOLIC: 'HYPERBOLIC'
 };
+
+export const Data = {
+	INTERMEDIATE: 'INTERMEDIATE',
+	COMPARISON: 'COMPARISON'
+};
