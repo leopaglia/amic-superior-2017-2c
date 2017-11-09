@@ -44,7 +44,7 @@ class Comparison extends Component {
 						let className = 'text-center';
 						if(bestIdxs.indexOf(idx) !== -1) className += ' text-success';
 						if(worstIdxs.indexOf(idx) !== -1) className += ' text-danger';
-						return <td key={`compdata-${idx}`} className={className}>{d}</td>;
+						return <td key={`compdata-${idx}`} className={className}>{isNaN(d) ? '-' : d}</td>;
 					})}
 				</tr>
 			)}

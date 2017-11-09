@@ -212,7 +212,7 @@ export const getComparisonData = (points) => {
 		values.quadraticErrorSum(points, fns.exponential),
 		values.quadraticErrorSum(points, fns.potential),
 		values.quadraticErrorSum(points, fns.hyperbolic)
-	];
+	].map(n => isNaN(n) ? Infinity : n);
 
 	const worstApproximationIndex = errorSums.indexOf(Math.max(...errorSums));
 	const bestApproximationIndex = errorSums.indexOf(Math.min(...errorSums));

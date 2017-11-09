@@ -9,7 +9,7 @@ import {
 import valuesFor from './values';
 import { solve } from 'linear-solve';
 
-const {pow, E} = Math;
+const { pow, E } = Math;
 
 export const linearValues = points => {
 	const n = points.length;
@@ -39,7 +39,13 @@ export const quadraticApproximation = points => {
 export const exponentialValues = points => {
 	const n = points.length;
 	const {xsum, x2sum, lnysum, xlnysum} = valuesFor(points);
-	const [a, B] = solve([[x2sum, xsum], [xsum, n]], [xlnysum, lnysum]);
+	let a = 0;
+	let B = 0;
+	try {
+		[a, B] = solve([[x2sum, xsum], [xsum, n]], [xlnysum, lnysum]);
+	} catch(e) {}
+	a = a || 0;
+	B = B || 0;
 	const b = pow(E, B) || 0;
 	return {a, b};
 };

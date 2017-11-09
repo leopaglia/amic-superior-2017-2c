@@ -62,7 +62,7 @@ class Table extends Component {
 			<tbody>
 				{data.data.map((row, idx) =>
 					<tr key={`datarow-${idx}`}>
-						{row.map((d, idx) => <td key={`data-${idx}`} className="text-center">{d}</td>)}
+						{row.map((d, idx) => <td key={`data-${idx}`} className="text-center">{isNaN(d) ? '-' : d}</td>)}
 					</tr>
 				)}
 				{this.renderSums(data)}
@@ -72,7 +72,7 @@ class Table extends Component {
 
 	renderSums(data) {
 		return(
-			<tr>{data.sums.map((d, idx) => <td key={`datasum-${idx}`} className="text-center info">{d}</td>)}</tr>
+			<tr>{data.sums.map((d, idx) => <td key={`datasum-${idx}`} className="text-center info">{isNaN(d) ? '-' : d}</td>)}</tr>
 		);
 	}
 
